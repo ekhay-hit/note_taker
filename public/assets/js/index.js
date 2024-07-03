@@ -17,11 +17,13 @@ if (window.location.pathname === '/notes') {
 
 // Show an element
 const show = (elem) => {
+  // console.log('I am in show');
   elem.style.display = 'inline';
 };
 
 // Hide an element
 const hide = (elem) => {
+  // console.log('I am in hide');
   elem.style.display = 'none';
 };
 
@@ -29,6 +31,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
+  // console.log('You clicked save and now you are going to fetch');
   fetch('/api/notes', {
     method: 'GET',
     headers: {
@@ -73,10 +76,12 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
+  console.log('You have clicked save button');
   const newNote = {
     title: noteTitle.value,
     text: noteText.value
   };
+  console.log(newNote);
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -129,13 +134,17 @@ const handleRenderBtns = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+  console.log('You are now entring renderNoteList');
   let jsonNotes = await notes.json();
+  console.log(jsonNotes);
+  console.log('past jsonNotes');
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
   let noteListItems = [];
-
+ console.log('Printing list Item');
+  console.log(noteListItems);
   // Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
@@ -161,7 +170,7 @@ const renderNoteList = async (notes) => {
 
       liEl.append(delBtnEl);
     }
-
+      console.log('About to exist rendering ');
     return liEl;
   };
 
