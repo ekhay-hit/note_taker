@@ -36,14 +36,15 @@ router.post('/notes', (req, res)=>{
                     error? console.error("ERORR data failed to write"):console.info('Notes have been updated');
                 })
             }
-        })
+        });
+
         const response ={
             status:"success",
             body: newNote,   
         }
 
         console.log(response);
-        res.status(201).json(response)
+       
     }else{
         res.status(500).json('error in posting notes');
         }
