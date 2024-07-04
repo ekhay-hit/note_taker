@@ -23,7 +23,7 @@ app.use(express.urlencoded({extended:true}));
 // use any other port if port 3001 is not available 
 const PORT = process.env.port || 3001;
 app.use("/api", notesRouter);
-app.use('/api', require('./routes/notes'));
+// app.use('/api', require('./routes/notes'));
 // statics
 app.use(express.static("public"));
 

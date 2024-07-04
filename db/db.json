@@ -10,11 +10,6 @@
         "id": "e8d9"
     },
     {
-        "title": "Note 2",
-        "text": "This the note number 2",
-        "id": "b03f"
-    },
-    {
         "title": "Note 3",
         "text": "This is the note number 3",
         "id": "9ef9"
@@ -28,20 +23,5 @@
         "title": "Note 6",
         "text": "This is note number 6",
         "id": "0e4e"
-    },
-    {
-        "title": "Note 5",
-        "text": "This note number 5",
-        "id": "f0e9"
-    },
-    {
-        "title": "Note 7",
-        "text": "This note number 7",
-        "id": "3201"
-    },
-    {
-        "title": "note number 8",
-        "text": "this note number 7",
-        "id": "875a"
     }
 ]

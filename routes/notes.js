@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const fs = require("fs");
 const path = require("path");
 const db =require('../db/db.json')
@@ -35,7 +34,7 @@ router.post('/notes', (req, res)=>{
             }else{
                 // parsing data and store it in parsedNote varaible
                 const parsedNote = JSON.parse(data);
-                console.log(data);
+              
                 // pushing the new note to parseNote
                 parsedNote.push(newNote);
                 console.log('I am in reading server');
@@ -58,4 +57,32 @@ router.post('/notes', (req, res)=>{
       
 })
 
+//
+router.delete('/notes/:id',(req, res)=>{
+    console.log('I entered delete');
+   const { params: {id}}  = req;
+    
+    console.log(id);
+   // read the file
+   fs.readFile("./db/db.json",'utf8', (error, data)=>{
+    if(error){
+     console.log(error);
+    }else{
+        const parsedNoteForDelete= JSON.parse(data);
+
+        const findNoteIndex = parsedNoteForDelete.findIndex((note) => note.id === id);
+        if(findNoteIndex === -1) return res.sendStatus(404);
+        console.log(findNoteIndex);
+        parsedNoteForDelete.splice(findNoteIndex,1);
+        console.log('I am here in delete');
+        
+        fs.writeFile("./db/db.json", JSON.stringify(parsedNoteForDelete,null,4),(error) =>{
+            error? console.error("ERORR data failed to write"):console.info('Note has been deleted');
+        })
+        
+    }  
+        
+   })
+
+})
 module.exports = router;
