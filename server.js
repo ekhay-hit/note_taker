@@ -4,14 +4,13 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const db =require('./db/db.json')
-const util = require('util');
 const uuid_Random = require("./helpers/uuid");
 const notesRouter = require("./routes/notes.js");
 
 // initializing 
 const app = express();
 // Promise version of fs.readFile
-const readFromFile = util.promisify(fs.readFile);
+
 
 
 // parse json
@@ -30,26 +29,27 @@ app.use(express.static("public"));
 //./public/index.html
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, "./public/index.html"))
+   
 });
 
 app.get('/notes', (req,res)=>{
     res.sendFile(path.join(__dirname, "./public/notes.html"))
 });
 
-app.get('/api/notes', (req,res)=>{
-    // readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-    readFromFile('./db/db.json').then((data) => {
-        if (!data) {
-            res.json([]);
-        } else {
-            res.json(JSON.parse(data));
-        }
-    }).catch((err) => {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-    });
+// app.get('/api/notes', (req,res)=>{
+   
+//     readFromFile('./db/db.json').then((data) => {
+//         if (!data) {
+//             res.json([]);
+//         } else {
+//             res.json(JSON.parse(data));
+//         }
+//     }).catch((err) => {
+//         console.error(err);
+//         res.status(500).send('Internal Server Error');
+//     });
 
-});
+// });
 
 
 

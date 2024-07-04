@@ -1,7 +1,24 @@
 // requiring router from express
+const util = require('util');
 const router = require("express").Router();
 const fs = require("fs");
 const uuid_Random = require("../helpers/uuid");
+const readFromFile = util.promisify(fs.readFile);
+
+router.get('/notes', (req,res)=>{
+   
+    readFromFile('./db/db.json').then((data) => {
+        if (!data) {
+            res.json([]);
+        } else {
+            res.json(JSON.parse(data));
+        }
+    }).catch((err) => {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    });
+
+});
 
 // post request to add new notes 
 router.post('/notes', (req, res)=>{
