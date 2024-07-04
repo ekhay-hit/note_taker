@@ -37,7 +37,17 @@ app.get('/notes', (req,res)=>{
 });
 
 app.get('/api/notes', (req,res)=>{
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    // readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    readFromFile('./db/db.json').then((data) => {
+        if (!data) {
+            res.json([]);
+        } else {
+            res.json(JSON.parse(data));
+        }
+    }).catch((err) => {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    });
 
     // app.get('/api/notes', async (req, res) => {
     //     try {
