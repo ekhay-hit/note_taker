@@ -3,8 +3,9 @@ const util = require('util');
 const router = require("express").Router();
 const fs = require("fs");
 const uuid_Random = require("../helpers/uuid");
-const readFromFile = util.promisify(fs.readFile);
 
+// Promise version of fs.readFile
+const readFromFile = util.promisify(fs.readFile);
 
 // get request to get data from db.json
 router.get('/notes', (req,res)=>{
