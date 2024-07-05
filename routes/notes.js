@@ -5,6 +5,8 @@ const fs = require("fs");
 const uuid_Random = require("../helpers/uuid");
 const readFromFile = util.promisify(fs.readFile);
 
+
+// get request to get data from db.json
 router.get('/notes', (req,res)=>{
    
     readFromFile('./db/db.json').then((data) => {

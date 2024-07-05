@@ -56,7 +56,10 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json'
     }
-  });
+    
+  }).then(
+    window.location.reload()
+  );
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
